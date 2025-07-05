@@ -1,0 +1,62 @@
+{% extends 'Teacher_Home_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Teacher_Home_New_Attendance_Select1.css">
+{% endblock %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content1 %}
+<div class="homebutton">
+    <a href="{% url 'Teacher_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="AttendanceSubjectSelect">
+  <form method="POST" action="{% url 'Teacher_Home_New_Attendance_Select' %}">
+    {% csrf_token %}
+    <div class="studentregistrationdepatmentandsem">
+      <div class="studentregistrationdepatmentandsem2">
+        <label class="studentregistrationformlable" for="Department">Department:</label>
+        <select class="studentregistrationforminput" id="Department" name="Department" required>
+          <option value="" selected>Select Department</option>
+          {% for DepartmentandSemestre in DepartmentandSemestre %}
+          <option class="selectvalue" value={{ DepartmentandSemestre }}>{{ DepartmentandSemestre }}</option>
+          {% endfor %}
+      </select>
+      </div>
+      <!--<h2>Welcome, {{ TeacherData.TeacherID }}!</h2>
+      <h2>Welcome, {{ TeacherData.CollageCode }}!</h2>-->
+      <div class="studentregistrationdepatmentandsem1">
+        <label class="studentregistrationformlable" for="Semestre">Semestre:</label>
+        <input class="studentregistrationforminput" type="number" id="Semestre" name="Semestre" required><br>
+      </div>
+    </div>
+    <label class="studentregistrationformlable" for="SubjectName">Subject Name:</label>
+    <input class="studentregistrationforminput" type="Code" id="SubjectName" name="SubjectName" required><br>
+    
+    <label class="studentregistrationformlable" for="SubjectCode">Subject Code:</label>
+    <input class="studentregistrationforminput" type="number" id="SubjectCode" name="SubjectCode" required><br>
+
+    <label class="studentregistrationformlable" for="LectureStartingTime">Lecture Start Time:</label>
+    <input class="studentregistrationforminput" type="time" id="LectureStartingTime" name="LectureStartingTime" required><br>
+    
+    <label class="studentregistrationformlable" for="LectureEndingTime">Lecture End Time:</label>
+    <input class="studentregistrationforminput" type="time" id="LectureEndingTime" name="LectureEndingTime" required><br>
+    
+    <!--<label class="studentregistrationformlable" for="TeacherID">TeacherID:</label>-->
+    <!--<input class="studentregistrationforminput" type="number" id="TeacherID" name="TeacherID" placeholder="{{ TeacherData.TeacherID }}"><br>-->
+
+    <!--<label class="studentregistrationformlable" for="Teacher_Name">Teacher Name:</label>-->
+    <!--<input class="studentregistrationforminput" type="text" id="Teacher_Name" name="Teacher_Name" placeholder="{{ TeacherData.Teacher_Name }}"><br>-->
+
+    <div class="buttoncontainer">
+      <button type="submit">Start</button>
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'Teacher_Home_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Teacher_Home1.css">
+{% endblock %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<div class="menu-container">
+    <a href="{% url 'Teacher_Home_Student_Data' %}"><div class="textshow">Student Data</div></a>
+    <a href="{% url 'Teacher_Home_Attendance_Data' %}"><div class="textshow">Attendance Data</div></a>
+    <a href="{% url 'Teacher_Home_New_Attendance_Select' %}"><div class="textshow">New Attendance</div></a>
+    <a href="{% url 'Teacher_Home_LectureData' %}"><div class="textshow">Lecture Data</div></a>
+
+</div>
+<!--<h2>Welcome, {{ TeacherData.TeacherID }}!</h2>
+<h2>Welcome, {{ TeacherData.CollageCode }}!</h2>-->
+
+{% endblock %}

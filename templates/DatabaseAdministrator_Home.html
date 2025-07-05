@@ -1,0 +1,22 @@
+{% extends 'DatabaseAdministrator_HomeBase.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/DatabaseAdministrator_Home.css">
+{% endblock %}
+
+{% block title %}Attendance Page{% endblock %}
+
+{% block content %}
+<div class="menu-container">
+    <a href="{% url 'DatabaseAdministrator_DepartmentSemester' %}"><div class="textshow">&emsp;&ensp;Department&emsp;&emsp;&&emsp;&emsp;&emsp;&emsp;Semester</div></a>
+    <a href="{% url 'DatabaseAdministrator_TeacherData' %}"><div class="textshow">&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Teacher Data &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</div></a>
+    <a href="{% url 'DatabaseAdministrator_StudentData' %}"><div class="textshow">&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Student Data &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</div></a>
+    <a href="{% url 'DatabaseAdministrator_SubjectData' %}"><div class="textshow">&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Subject Data &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</div></a>
+    <a href="{% url 'DatabaseAdministrator_StudentRegistration' %}"><div class="textshow">&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Student Registration &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</div></a>
+    <a href="{% url 'DatabaseAdministrator_TeacherLectureData' %}"><div class="textshow">&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Teacher Lecture Data</div></a>
+    <a href="{% url 'DatabaseAdministrator_List' %}"><div class="textshow">Database Administrator Login Data</div></a>
+</div>
+<!--<h2>Welcome, {{ DatabaseAdministrator.DatabaseAdministratorID }}!</h2>
+<h2>Welcome, {{ DatabaseAdministrator.DatabaseAdministrator_Name }}!</h2>-->
+    
+{% endblock %}

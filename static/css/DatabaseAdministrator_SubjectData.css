@@ -1,0 +1,144 @@
+table {
+    width: 100%;
+    border-collapse:separate;
+    overflow: auto;
+}
+th, td {
+    /*border: 1px solid #ddd;*/
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.addbutton{
+    /*border: 1px solid red;*/
+    margin: auto;
+}
+
+.SubjectDataFormlable{
+    font-size: 20px;
+    margin-left: 10px;
+    background-color: transparent;
+    pointer-events: none;
+    text-align: start;
+    margin-left: 10px;
+    
+}
+
+.SubjectDataForminput{
+    border: 2px solid #848482;
+    margin-bottom: 4px;
+    margin-left: 10px;
+    margin-right: 3px;
+    margin-top: 8px;
+    width: -webkit-fill-available;
+    height: 25px;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    background-color: #d3d3d3;
+    padding-left: 5px;
+}
+
+.submit-button {
+    padding: 5px 10px;
+    width: 150px;
+    font-size: large;
+    margin: 3px;
+    margin-top: 10px;
+    color: #002147;
+    background-color: #d3d3d3;
+    border: 2px solid #848482;
+    cursor: pointer;
+}
+.submit-button{
+    margin-left: 40%;
+}
+/* Modal Content */
+.modal-content {
+    background-color: #d3d3d3;
+    margin: 4% auto;
+    padding: 10px;
+    border: 2px solid #848482;
+    width: 50%;
+    height: 85%;
+
+}
+
+.DepartmentandSemestreForm{
+    /*border: 1px solid red;*/
+    width: 98%;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 5px;
+    margin: auto;
+}
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-thumb {
+  width: 26px;
+  border-radius: 13px;
+  background-clip: padding-box;
+  border: 11px solid transparent;
+  color: #002147;
+}
+
+*::-webkit-scrollbar-thumb {        
+    color: #002147;
+  box-shadow: inset 0 0 0 10px;
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Buttons */
+.add-button {
+    border: 2px solid #848482;
+    border-radius: 3px;
+    padding: 4px 10px;
+    color: #002147;
+    font-size: large;
+    cursor: pointer;
+}
+
+td.columncenter{
+    width: 150px;
+    align-items: center;
+}
+
+.columnname td{
+    text-align: center;
+}
+
+th{
+    text-align: center;
+}
+
+.homebutton a{
+    text-decoration: none;
+    color: #002147;
+}
+.homebutton{
+    /*border: 1px solid red;*/
+    padding: 5px;
+    color: #002147;
+    font-size: larger;
+    margin: auto;
+    margin-left: 0px;
+}

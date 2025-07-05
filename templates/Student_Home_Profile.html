@@ -1,0 +1,69 @@
+{% extends 'Student_Home_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Student_Home_Profile1.css">
+{% endblock %}
+
+{% block title %}Profile Page{% endblock %}
+{% block content1 %}
+<div class="homebutton">
+    <a href="{% url 'Student_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+{% endblock %}
+{% block content %}
+<div class="profilecontainer">
+    <h1 class="studentprofilename">Welcome, {{ student.Student_Name }}!</h1>
+    <div class="profilephotocontainer">
+        <h2 class="studentprofilelable" id="studentprofilephotolable">Profile Photo:</h2>
+        <div class="studentprofilephotoimg">
+            {% if student.Profile_Photo %}
+            <img src="{{ student.Profile_Photo.url }}" alt="Profile Photo" width="200">
+            {% else %}
+            <p>No profile photo available.</p>
+            {% endif %}
+        </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="profilephotoupload">
+            <label class="profilephotouploadlable" for="Profile_Photo">Profile Photo:</label>
+            <input class="profilephotouploadinput" type="file" id="Profile_Photo" name="Profile_Photo"><br>
+            <div class="profilephotouploadbutton">
+                <button class="profilephotouploadbuttonteg" type="submit">Upload Photo</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="profilecontainer1">
+    <h1 class="studentprofile">Student Profile</h1>
+    <p><strong class="studentprofilelable">Student ID:</strong>
+    <div class="studentdata">{{ student.StudentID }}</div>
+    </p>
+    <p><strong class="studentprofilelable">Name:</strong>
+    <div class="studentdata">{{ student.Student_Name }}</div>
+    </p>
+    <div class="studentprofiledepatmentandsem">
+        <div class="studentprofiledepatmentandsem1">
+            <p class="studentprofiledepatmentandsemname"><strong class="studentprofilelable">Semestre:</strong>
+            <div class="studentdata">{{ student.Semestre }}</div>
+            </p>
+        </div>
+        <div class="studentprofiledepatmentandsem2">
+            <p class="studentprofiledepatmentandsemname"><strong class="studentprofilelable">Department:</strong>
+            <div class="studentdata">{{ student.Department }}</div>
+            </p>
+        </div>
+    </div>
+    <p><strong class="studentprofilelable">Email:</strong>
+    <div class="studentdata">{{ student.Email }}</div>
+    </p>
+    <p><strong class="studentprofilelable">Mobile:</strong>
+    <div class="studentdata">{{ student.Mobile }}</div>
+    </p>
+    <div class="profilecontainerbutton">
+        <a href="{% url 'Student_Home_Profile_Update' %}">Profile Update</a>
+        <a href="{% url 'Student_Home_Profile_Password_Change' %}">Password Change</a>
+        <a href="{% url 'Student_Home' %}">Back</a>
+    </div>
+</div>
+{% endblock %}

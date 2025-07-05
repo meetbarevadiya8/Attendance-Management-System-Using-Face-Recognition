@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/Login_Base1.css">
+    {% block css %}
+    {% endblock %}
+
+    <title>{% block title %}My Website{% endblock %}</title>
+</head>
+
+<body>
+    <div class="background-blur"></div>
+    <div class="containerblur">
+    <div class="container">
+        <div class="maintext">
+            <h1 class="fix-container">Attendance Management System</h1>
+        </div>
+        <div class="database">
+            <a href="{% url 'DatabaseAdministrator_Login' %}" id="database">Database</a>
+        </div>
+    </div>
+    <main>
+        <!--<div class="container1">-->
+        <div class="button-container">
+            <a href="{% url 'Student_Login' %}">Student Login</a>
+            <a href="{% url 'Teacher_Login' %}">Teacher Login</a>
+            <a href="{% url 'Student_Registration' %}">Student Registration</a>
+            <a href="{% url 'Student_Password_Forget' %}">Forget Password</a>
+
+            {% if messages %}
+            <div class="studentregistrationformmessages">
+
+                {% for message in messages %}
+                <h4>{{ message }}</h4>
+                {% endfor %}
+
+            </div>
+            {% endif %}
+
+        </div>
+
+        <div class="containermain">
+        <div class="container1">
+            {% block content %}
+            <div class="welcome">
+                <h1 class="typing"></h1>
+            </div>
+            <div class="welcome2">
+                <h2>Attendance Management System</h2>
+            </div>
+            {% endblock %}
+        </div>
+        </div>
+    </main>
+</div>
+    <script src="../static/js/Login_Base.js"></script>
+</body>
+
+</html>
+<!--<div class="login-display" id="loginDisplay">
+            <h2>Select a login page</h2>
+            <p>The content of the login page will appear here.</p>
+        </div>
+        </div>-->
+<!--<script>
+            function loadPage(url) {
+                const contentDiv = document.getElementById('loginDisplay');
+                fetch(url)
+                    .then(response => response.text())
+                    .then(html => {
+                        contentDiv.innerHTML = html;
+                    });
+            }
+        </script>-->

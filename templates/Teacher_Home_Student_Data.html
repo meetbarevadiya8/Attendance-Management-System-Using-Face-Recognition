@@ -1,0 +1,85 @@
+{% extends 'Teacher_Home_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Teacher_Home_Student_Data.css">
+{% endblock %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content1 %}
+<div class="homebutton">
+    <a href="{% url 'Teacher_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="semestreanddepartmentfilter">
+        <div class="semestreanddepartmentfilter1">
+            <label class="semestreanddepartmentfilterlable" for="Semestre">Semester Number:</label>
+            <select class="semestreanddepartmentfilterinput" id="Semestre" name="Semestre">
+                <option value="" selected>Select Semestre</option>
+                <option value=1>1</option>
+                <option value=3>3</option>
+                <option value=5>5</option>
+            </select>
+        </div>
+        <div class="semestreanddepartmentfilter2">
+            <label class="semestreanddepartmentfilterlable" for="Semestre">Semester Department:</label>
+            <select class="semestreanddepartmentfilterinput" id="Department" name="Department">
+                <option value="" selected>Select Department</option>
+                <option value="Computer">Computer</option>
+                <option value="IT">IT</option>
+                <option value="AI">AI</option>
+            </select>
+        </div>
+        <button type="submit">Show Students</button>
+    </div>
+</form>
+<form method="POST">
+    {% csrf_token %}
+    <div class="studentidfilter">
+        <div class="studentidfilter1">
+            <label class="semestreanddepartmentfilterlable" for="StudentID">Student ID:</label>
+            <input class="semestreanddepartmentfilterinput" type="number" id="StudentID" name="StudentID"><br>
+        </div>
+        <button type="submit">Show Students</button>
+    </div>
+</form>
+
+<div class="tablebody">
+    <table>
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Semestre</th>
+                <th>Email</th>
+                <th>Mobile</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for StudentData in StudentData %}
+            <tr>
+                <td class="studentdatashowurl">
+                    <a href="{% url 'Teacher_Home_Student_Data_Show' StudentData.StudentID %}">
+                        {{ StudentData.StudentID }}
+                    </a>
+                </td>
+                <td>{{ StudentData.Student_Name }}</td>
+                <td>{{ StudentData.Department }}</td>
+                <td>{{ StudentData.Semestre }}</td>
+                <td>{{ StudentData.Email }}</td>
+                <td>{{ StudentData.Mobile }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No Data available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

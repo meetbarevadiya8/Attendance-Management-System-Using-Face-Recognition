@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+    border-collapse:separate;
+    overflow: auto;
+}
+th, td {
+    /*border: 1px solid #ddd;*/
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}

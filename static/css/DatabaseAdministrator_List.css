@@ -1,0 +1,250 @@
+table {
+    width: 100%;
+    border-collapse:separate;
+    overflow: auto;
+}
+th, td {
+    /*border: 1px solid #ddd;*/
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.studentdatashowurl a {
+    text-decoration: none;
+    text-align: center;
+}
+
+.studentdatashowurl{
+    text-align: center;
+    color: blue;
+}
+
+
+.semestreanddepartmentfilter{
+    border: 2px solid black;
+    margin: 10px;
+    display: flex;
+}
+.semestreanddepartmentfilter1{
+    /*border: 1px solid red;*/
+    width: 35%;
+    padding: 3px;
+}
+.semestreanddepartmentfilter2{
+    /*border: 1px solid red;*/
+    width: 35%;
+    padding: 3px;
+}
+.tablebody{
+    border: 0px solid;
+}
+
+.semestreanddepartmentfilterlable{
+    font-size: larger;
+    margin-left: 10px;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.semestreanddepartmentfilterinput{
+    width: 200px;
+    height: 30px;
+    font-size: medium;
+}
+
+.semestreanddepartmentfilter button{
+    width: 150px;
+    height: 30px;
+    margin: auto;
+    margin-left: 10px;
+    font-size: medium;
+}
+
+.studentidfilter{
+    border: 2px solid black;
+    margin: 10px;
+    display: flex;
+}
+.studentidfilter .semestreanddepartmentfilterinput{
+    height: 25px;
+}
+.studentidfilter1{
+    width: 35%;
+    padding: 3px;
+}
+
+.studentidfilter button{
+    width: 150px;
+    height: 30px;
+    margin: auto;
+    margin-left: 10px;
+    font-size: medium;
+}
+
+.addbutton{
+    /*border: 1px solid red;*/
+    margin: auto;
+}
+
+.addbutton a{
+    color: #002147;
+    margin: auto;
+    padding-top: 5px;
+    text-decoration: none;
+    /*padding-left: 5px;*/
+}
+
+
+ /*CSS for Modal */
+
+ /* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #d3d3d3;
+    margin: 2% auto;
+    padding: 10px;
+    border: 2px solid #848482;
+    width: 50%;
+    height: 85%;
+
+}
+
+.DatabaseAdministratorForm{
+    /*border: 1px solid red;*/
+    width: 98%;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 5px;
+    margin: auto;
+}
+
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-thumb {
+  width: 26px;
+  border-radius: 13px;
+  background-clip: padding-box;
+  border: 11px solid transparent;
+  color: #002147;
+}
+
+*::-webkit-scrollbar-thumb {        
+    color: #002147;
+  box-shadow: inset 0 0 0 10px;
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Buttons */
+.add-button {
+    border: 2px solid #848482;
+    border-radius: 3px;
+    padding: 4px 10px;
+    color: #002147;
+    font-size: large;
+    cursor: pointer;
+}
+
+.submit-button {
+    padding: 5px 10px;
+    width: 150px;
+    font-size: large;
+    margin: 3px;
+    margin-top: 10px;
+    color: #002147;
+    background-color: #d3d3d3;
+    border: 2px solid #848482;
+    cursor: pointer;
+}
+
+.DatabaseAdministratorFormlable{
+    font-size: 20px;
+    margin-left: 10px;
+    background-color: transparent;
+    pointer-events: none;
+    text-align: start;
+    margin-left: 10px;
+    
+}
+
+.DatabaseAdministratorForminput{
+    border: 2px solid #848482;
+    margin-bottom: 4px;
+    margin-left: 10px;
+    margin-right: 3px;
+    margin-top: 8px;
+    width: -webkit-fill-available;
+    height: 25px;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    background-color: #d3d3d3;
+    padding-left: 5px;
+}
+
+.adddata{
+    /*border: 1px solid red;*/
+    width: 98%;
+    height: 70px;
+    text-align: center;
+    padding: 0px;
+}
+.submitbutton{
+    /*border: 1px solid red;*/
+    width: 98%;
+    align-items: center;
+}
+.submit-button{
+    margin-left: 40%;
+}
+
+.homebutton a{
+    text-decoration: none;
+    color: #002147;
+}
+.homebutton{
+    /*border: 1px solid red;*/
+    padding: 5px;
+    color: #002147;
+    font-size: larger;
+    margin: auto;
+    margin-right: 0px;
+}
+
+.statuslogin{
+    color: green;
+}
+.statuslogout{
+    color: red;
+}

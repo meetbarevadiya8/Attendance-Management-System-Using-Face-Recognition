@@ -1,0 +1,64 @@
+{% extends 'Login_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Student_Registration.css">
+{% endblock %}
+
+
+{% block title %}Student Registration{% endblock %}
+
+
+{% block content %}
+
+<h1 class="studentregistration">Student Registration</h1>
+<form method="POST">
+  {% csrf_token %}
+  <div class="studentidandcollagecode">
+    <div class="studentidandcollagecode1">
+      <label class="studentregistrationformlable" for="StudentID">Student ID:</label>
+      <input class="studentregistrationforminput" type="number" id="StudentID" name="StudentID" required><br>
+    </div>
+    <div class="studentidandcollagecode2">
+      <label class="studentregistrationformlable" for="CollageCode">CollageCode:</label>
+      <input class="studentregistrationforminput" type="number" id="CollageCode" name="CollageCode" required><br>
+    </div>
+  </div>
+  <label class="studentregistrationformlable" for="Student_Name">Student Name:</label>
+  <input class="studentregistrationforminput" type="text" id="Student_Name" name="Student_Name" required><br>
+  <div class="studentregistrationdepatmentandsem">
+    <div class="studentregistrationdepatmentandsem1">
+      <label class="studentregistrationformlable" for="Semestre">Semestre:</label>
+      <input class="studentregistrationforminput" type="number" id="Semestre" name="Semestre" required><br>
+    </div>
+    <div class="studentregistrationdepatmentandsem2">
+      <label class="studentregistrationformlable" for="Department">Department:</label>
+      <select class="studentregistrationforminput" id="Department" name="Department">
+        <option value="" selected>Select Department</option>
+        {% for DepartmentandSemestre in DepartmentandSemestre %}
+        <option class="selectvalue" value={{ DepartmentandSemestre }}>{{ DepartmentandSemestre }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <label class="studentregistrationformlable" for="Mobile">Mobile:</label>
+  <input class="studentregistrationforminput" type="number" id="Mobile" name="Mobile" required><br>
+  <label class="studentregistrationformlable" for="Email">Email:</label>
+  <input class="studentregistrationforminput" type="Email" id="Email" name="Email" required><br>
+  <label class="studentregistrationformlable" for="Password">Password:</label>
+  <input class="studentregistrationforminput" type="password" id="Password" name="Password" required><br>
+  <div class="buttoncontainer">
+    <button type="submit">Register</button>
+  </div>
+</form>
+
+<!--<div class="studentregistrationformmessages">
+  {% if messages %}
+
+  {% for message in messages %}
+  <h3>{{ message }}</h3>
+  {% endfor %}
+
+  {% endif %}
+</div>-->
+
+{% endblock %}

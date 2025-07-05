@@ -1,0 +1,56 @@
+{% extends 'Teacher_Home_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Teacher_Home_LectureData.css">
+{% endblock %}
+
+{% block title %}Home Page{% endblock %}
+{% block content1 %}
+
+<div class="homebutton">
+    <a href="{% url 'Teacher_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+{% endblock %}
+{% block content %}
+
+
+<div class="tablebody">
+    <table>
+        <thead>
+            <tr>
+                <th >TeacherLectureData ID</th>
+                <th id="TeacherID">Teacher ID</th>
+                <th>Name</th>
+                <th id="Departmentcolumn">Department</th>
+                <th id="Semestre">Semestre</th>
+                <th id="SubjectName">Subject Name</th>
+                <th id="SubjectCode">Subject Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for LectureData in LectureData %}
+            <tr>
+                <td class="columncenter">
+                        {{ LectureData.TeacherLectureDataID}}                     
+                </td>
+                <td>{{ LectureData.TeacherID }}</td>
+                <td>{{ LectureData.Teacher_Name }}</td>
+                <td>{{ LectureData.Department }}</td>
+                <td>{{ LectureData.Semestre }}</td>
+                <td>{{ LectureData.Subject_Name }}</td>
+                <td>{{ LectureData.Subject_Code }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No Data available.</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Edit Modal -->
+
+{% endblock %}

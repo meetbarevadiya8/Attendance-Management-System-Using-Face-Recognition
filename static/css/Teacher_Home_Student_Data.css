@@ -1,0 +1,107 @@
+table {
+    width: 100%;
+    border-collapse:separate;
+    overflow: auto;
+}
+th, td {
+    /*border: 1px solid #ddd;*/
+    border: 1px solid white;
+    padding: 8px;
+    text-align: left;
+    color: white;
+}
+th {
+    background-color: #0077cc;
+}
+tr:hover {
+    background-color: #0077cc;
+    color: black;
+}
+
+.studentdatashowurl a {
+    text-decoration: none;
+    text-align: center;
+    color: red;
+    
+}
+
+.studentdatashowurl{
+    text-align: center;
+
+}
+
+
+.semestreanddepartmentfilter{
+    border: 2px solid white;
+    margin: 10px;
+    display: flex;
+}
+.semestreanddepartmentfilter1{
+    /*border: 1px solid red;*/
+    width: 35%;
+    padding: 3px;
+}
+.semestreanddepartmentfilter2{
+    /*border: 1px solid red;*/
+    width: 35%;
+    padding: 3px;
+}
+.tablebody{
+    border: 0px solid;
+}
+
+.semestreanddepartmentfilterlable{
+    font-size: larger;
+    margin-left: 10px;
+    background-color: transparent;
+    pointer-events: none;
+    color: white;
+}
+
+.semestreanddepartmentfilterinput{
+    width: 200px;
+    height: 30px;
+    font-size: medium;
+}
+
+.semestreanddepartmentfilter button{
+    width: 150px;
+    height: 30px;
+    margin: auto;
+    margin-left: 10px;
+    font-size: medium;
+}
+
+.studentidfilter{
+    border: 2px solid white;
+    margin: 10px;
+    display: flex;
+}
+.studentidfilter .semestreanddepartmentfilterinput{
+    height: 25px;
+}
+.studentidfilter1{
+    width: 35%;
+    padding: 3px;
+}
+
+.studentidfilter button{
+    width: 150px;
+    height: 30px;
+    margin: auto;
+    margin-left: 10px;
+    font-size: medium;
+}
+
+.homebutton a{
+    text-decoration: none;
+    color: white;
+}
+.homebutton{
+    /*border: 1px solid red;*/
+    padding: 5px;
+    color: white;
+    font-size: larger;
+    margin: auto;
+    margin-right: 0px;
+}

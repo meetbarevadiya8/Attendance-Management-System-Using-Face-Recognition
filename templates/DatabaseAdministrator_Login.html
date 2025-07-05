@@ -1,0 +1,36 @@
+{% extends 'DatabaseAdministrator_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/DatabaseAdministrator_Login1.css">
+{% endblock %}
+
+{% block title %}Attendance Page{% endblock %}
+
+
+{% block content %}
+<div class="maincontinor">
+<h1 class="DatabaseAdministratorLogin">Database Administrator Login</h1>
+<form method="POST">
+  {% csrf_token %}
+  <label class="DatabaseAdministratorLoginlable" for="DatabaseAdministratorID">ID:</label>
+  <input class="DatabaseAdministratorLogininput" type="number" id="DatabaseAdministratorID" name="DatabaseAdministratorID" required><br>
+  <label class="DatabaseAdministratorLoginlable" for="DatabaseAdministrator_CollageCode">Collage Code:</label>
+  <input class="DatabaseAdministratorLogininput" type="number" id="DatabaseAdministrator_CollageCode" name="DatabaseAdministrator_CollageCode" required><br>
+  <label class="DatabaseAdministratorLoginlable" for="Password">Password:</label>
+  <input class="DatabaseAdministratorLogininput" type="password" id="Password" name="Password" required><br>
+  <div class="buttoncontainer">
+    <button type="submit">Login</button>
+  </div>
+</form>
+
+<div class="DatabaseAdministratorLoginformmessages">
+  {% if messages %}
+
+  {% for message in messages %}
+  <h3>{{ message }}</h3>
+  {% endfor %}
+
+  {% endif %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,206 @@
+{% extends 'DatabaseAdministrator_HomeBase.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/DatabaseAdministrator_StudentData1.css">
+{% endblock %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content1 %}
+<div class="homebutton">
+    <a href="{% url 'DatabaseAdministrator_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Filter by Semester and Department -->
+<form method="POST"">
+    {% csrf_token %}
+    <div class="semestreanddepartmentfilter">
+        <div class="semestreanddepartmentfilter1">
+            <label class="semestreanddepartmentfilterlable" for="Semestre">Semester Number:</label>
+            <select class="semestreanddepartmentfilterinput" id="Semestre" name="Semestre">
+                <option value="" selected>Select Semester</option>
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="semestreanddepartmentfilter2">
+            <label class="semestreanddepartmentfilterlable" for="Department">Semester Department:</label>
+            <select class="semestreanddepartmentfilterinput" id="Department" name="Department">
+                <option value="" selected>Select Department</option>
+                {% for item in DepartmentandSemestre %}
+                <option class="selectvalue" value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit">Show Students</button>
+    </div>
+</form>
+
+<!-- Filter by Student ID -->
+<form method="POST">
+    {% csrf_token %}
+    <div class="studentidfilter">
+        <div class="studentidfilter1">
+            <label class="semestreanddepartmentfilterlable" for="StudentID">Student ID:</label>
+            <input class="semestreanddepartmentfilterinput" type="number" id="StudentID" name="StudentID"><br>
+        </div>
+        <button type="submit">Show Students</button>
+    </div>
+</form>
+
+<!-- Student Data Table -->
+<div class="tablebody">
+    <table>
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th id="Departmentcolumn">Department</th>
+                <th id="Semestre">Semester</th>
+                <th id="Email">Email</th>
+                <th id="Mobile">Mobile</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in StudentData %}
+            <tr>
+                <td class="columncenter">
+                    <button class="open-modal" 
+    data-studentid="{{ student.StudentID }}"
+    data-name="{{ student.Student_Name }}"
+    data-department="{{ student.Department }}"
+    data-semester="{{ student.Semestre }}"
+    data-email="{{ student.Email }}"
+    data-mobile="{{ student.Mobile }}"
+    data-photo="{% if student.Profile_Photo %}{{ student.Profile_Photo.url }}{% endif %}">
+    {{ student.StudentID }}
+</button>
+                </td>
+                <td>{{ student.Student_Name }}</td>
+                <td>{{ student.Department }}</td>
+                <td>{{ student.Semestre }}</td>
+                <td>{{ student.Email }}</td>
+                <td>{{ student.Mobile }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No Data available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Edit Modal -->
+<div id="itemModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="adddata">
+            <p class="editdatalable">Edit Data</p>
+        </div>
+
+        <form id="updateDataForm" method="POST" action="{% url 'StudentData_Updatedata' %}">
+            {% csrf_token %}
+            <div class="DepartmentandSemestreForm">
+                <div class="photoandiddepatmentsemestre">
+                    <div class="profilephotocontainer">
+                        <label class="StudentDataFormlable">Profile Photo:</label>
+                        <div class="studentprofilephotoimg">
+                            <img id="modalProfilePhoto" alt="Profile Photo" style="display: none; width: 120px; height: auto;" />
+                            <p id="noPhotoText" style="display: none;">No profile photo available.</p>
+                        </div>
+                    </div>
+                    <div class="iddepartmentsemestre">
+                        <label class="StudentDataFormlable" for="modalStudentID">ID:</label>
+                        <input class="StudentDataForminput" type="number" id="modalStudentID" name="StudentID" required><br>
+
+                        <label class="StudentDataFormlable" for="modalDepartment">Department:</label>
+                        <input class="StudentDataForminput" type="text" id="modalDepartment" name="Department" required><br>
+
+                        <label class="StudentDataFormlable" for="modalSemestre">Semester:</label>
+                        <input class="StudentDataForminput" type="number" id="modalSemestre" name="Semestre" required><br>
+                    </div>
+                </div>
+
+                <label class="StudentDataFormlable" for="modalStudentName">Name:</label>
+                <input class="StudentDataForminput" type="text" id="modalStudentName" name="Student_Name" required><br>
+
+                <label class="StudentDataFormlable" for="modalEmail">Email:</label>
+                <input class="StudentDataForminput" type="email" id="modalEmail" name="Email" required><br>
+
+                <label class="StudentDataFormlable" for="modalMobile">Mobile:</label>
+                <input class="StudentDataForminput" type="number" id="modalMobile" name="Mobile" required><br>
+
+                <div class="UpdateandDeletebutton">
+                    <button type="submit" class="submit-button">Update</button>
+                    <button type="button" onclick="deleteRecord(event)" id="deletebutton" class="submit-button">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    const modal = document.getElementById('itemModal');
+    const openModalButtons = document.querySelectorAll('.open-modal');
+    const closeBtn = document.querySelector('.close');
+
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            document.getElementById('modalStudentID').value = button.getAttribute('data-studentid');
+            document.getElementById('modalStudentName').value = button.getAttribute('data-name');
+            document.getElementById('modalDepartment').value = button.getAttribute('data-department');
+            document.getElementById('modalSemestre').value = button.getAttribute('data-semester');
+            document.getElementById('modalEmail').value = button.getAttribute('data-email');
+            document.getElementById('modalMobile').value = button.getAttribute('data-mobile');
+
+            const photoUrl = button.getAttribute('data-photo');
+            const imgEl = document.getElementById('modalProfilePhoto');
+            const noPhotoText = document.getElementById('noPhotoText');
+
+            if (photoUrl && photoUrl !== 'None') {
+                imgEl.src = photoUrl;
+                imgEl.style.display = 'block';
+                noPhotoText.style.display = 'none';
+            } else {
+                imgEl.style.display = 'none';
+                noPhotoText.style.display = 'block';
+            }
+
+            modal.style.display = 'block';
+        });
+    });
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    function deleteRecord(event) {
+        event.preventDefault();
+        const studentID = document.getElementById('modalStudentID').value;
+
+        fetch(`/StudentData_Deletedata/${studentID}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            location.reload();
+        });
+    }
+</script>
+
+{% endblock %}

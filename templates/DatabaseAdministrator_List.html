@@ -1,0 +1,232 @@
+{% extends 'DatabaseAdministrator_HomeBase.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/DatabaseAdministrator_List.css">
+{% endblock %}
+
+{% block title %}Attendance Page{% endblock %}
+{% block content1 %}
+
+<div class="homebutton">
+    <a href="{% url 'DatabaseAdministrator_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+
+
+<div class="addbutton">
+<button id="addDataBtn" class="add-button">Add Data</button>
+</div>
+<!-- Add Data Modal -->
+<div id="addDataModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="adddata">
+        <h2>Add Data</h2>
+        </div>
+        <form id="addDataForm" method="POST" onsubmit="setPlaceholderValue()" action="{% url 'DatabaseAdministrator_AddNew' %}">
+            <div class="DatabaseAdministratorForm">
+            {% csrf_token %}
+            <label class="DatabaseAdministratorFormlable" for="DatabaseAdministratorID">DatabaseAdministrator ID:</label>
+            <input class="DatabaseAdministratorForminput" type="text" id="DatabaseAdministratorID" name="DatabaseAdministratorID" required><br>
+
+            <label class="DatabaseAdministratorFormlable" for="DatabaseAdministrator_Name">Name:</label>
+            <input class="DatabaseAdministratorForminput" type="text" id="DatabaseAdministrator_Name" name="DatabaseAdministrator_Name" required><br>
+
+            <label class="DatabaseAdministratorFormlable" for="DatabaseAdministrator_Code">Code:</label>
+            <input class="DatabaseAdministratorForminput" type="text" id="DatabaseAdministrator_Code" name="DatabaseAdministrator_Code" required><br>
+
+            <label class="DatabaseAdministratorFormlable" for="DatabaseAdministrator_Email">Email:</label>
+            <input class="DatabaseAdministratorForminput" type="email" id="DatabaseAdministrator_Email" name="DatabaseAdministrator_Email" required><br>
+
+            <label class="DatabaseAdministratorFormlable" for="DatabaseAdministrator_Mobile">Mobile:</label>
+            <input class="DatabaseAdministratorForminput" type="number" id="DatabaseAdministrator_Mobile" name="DatabaseAdministrator_Mobile" required><br>
+
+            <label class="DatabaseAdministratorFormlable" for="Password">Password:</label>
+            <input class="DatabaseAdministratorForminput" type="password" id="Password" name="Password" required><br>
+
+            <input class="DatabaseAdministratorForminput" type="hidden" id="DatabaseAdministrator_CollageCode" name="DatabaseAdministrator_CollageCode" placeholder="{{ DatabaseAdministrator.DatabaseAdministrator_CollageCode }}"><br>
+    
+            <div class="submitbutton">
+            <button  type="submit" class="submit-button">Submit</button>
+        </div>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="tablebody">
+    <table>
+        <thead>
+            <tr>
+                <th>DatabaseAdministrator ID</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>LoginStatus</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for DatabaseAdministratorList in DatabaseAdministratorList %}
+            <tr>
+                <td class="columncenter">
+                    <button class="open-modal1" DatabaseAdministratorID="{{ DatabaseAdministratorList.DatabaseAdministratorID }}"
+                    DatabaseAdministrator-Name="{{ DatabaseAdministratorList.DatabaseAdministrator_Name }}" DatabaseAdministrator-Code="{{ DatabaseAdministratorList.DatabaseAdministrator_Code }}"
+                    DatabaseAdministrator-Email="{{DatabaseAdministratorList.DatabaseAdministrator_Email}}" DatabaseAdministrator-Mobile="{{DatabaseAdministratorList.DatabaseAdministrator_Mobile}}">
+                        {{ DatabaseAdministratorList.DatabaseAdministratorID }}
+                    </button>
+                </td>
+                <td>{{ DatabaseAdministratorList.DatabaseAdministrator_Name }}</td>
+                <td>{{ DatabaseAdministratorList.DatabaseAdministrator_Code }}</td>
+                <td>{{ DatabaseAdministratorList.DatabaseAdministrator_Email }}</td>
+                <td>{{ DatabaseAdministratorList.DatabaseAdministrator_Mobile }}</td>
+                <!--<td>{{DatabaseAdministratorList.LoginStatus}}</td>-->
+                <td>{% if DatabaseAdministratorList.LoginStatus %}
+                  <span class="statuslogin">Logged In</span>  
+                {% else %}
+                   <span class="statuslogout">Logged Out</span> 
+                {% endif %}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No Data available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Edit Modal -->
+<div id="itemModal1" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="adddata">
+            <h2>Edit Data</h2>
+        </div>
+
+        <form id="updateDataForm" method="POST" action="{% url 'DatabaseAdministrator_Updatedata' %}">
+            <div class="DepartmentandSemestreForm">
+                {% csrf_token %}
+                <label class="DatabaseAdministratorFormlable" for="DatabaseAdministratorID">ID:</label>
+                <input class="DatabaseAdministratorForminput" type="number" id="modalDatabaseAdministratorID" name="DatabaseAdministratorID"
+                    required><br>
+
+                <label class="DatabaseAdministratorFormlable" for="DatabaseAdministrator_Name">Name:</label>
+                <input class="DatabaseAdministratorForminput" type="text" id="modalDatabaseAdministratorName" name="DatabaseAdministrator_Name"
+                    required><br>
+
+                <label class="DatabaseAdministratorFormlable" for="DatabaseAdministrator_Code">Code:</label>
+                <input class="DatabaseAdministratorForminput" type="text" id="modalDatabaseAdministratorCode" name="DatabaseAdministrator_Code"
+                    required><br>
+
+                <label class="DatabaseAdministratorFormlable" for="DatabaseAdministrator_Email">Email:</label>
+                <input class="DatabaseAdministratorForminput" type="email" id="modalDatabaseAdministratorEmail" name="DatabaseAdministrator_Email" required><br>
+
+                <label class="DatabaseAdministratorFormlable" for="DatabaseAdministrator_Mobile">Mobile:</label>
+                <input class="DatabaseAdministratorForminput" type="number" id="modalDatabaseAdministratorMobile" name="DatabaseAdministrator_Mobile" required><br>
+                <div class="UpdateandDeletebutton">
+                    <button type="update" class="submit-button">Update</button>
+                    <button onclick="deleteRecord()" type="delete" id="deletebutton"
+                        class="submit-button">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("addDataModal");
+    const addDataBtn = document.getElementById("addDataBtn");
+    const closeBtn = document.querySelector(".close");
+
+    // Open modal
+    addDataBtn.onclick = function () {
+        modal.style.display = "block";
+    };
+
+    // Close modal
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // Close modal if clicked outside of it
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    function setPlaceholderValue() {
+    const input = document.getElementById('DatabaseAdministrator_CollageCode');
+    if (!input.value.trim()) {
+        input.value = input.placeholder; // Set the value to the placeholder if empty
+    }
+}
+</script>
+
+<script>
+    // Get modal element
+    const modal1 = document.getElementById('itemModal1');
+
+    // Get all buttons that open the modal
+    const openModalButtons = document.querySelectorAll('.open-modal1');
+
+    // Get the <span> element that closes the modal
+    //const closeBtn1 = document.querySelector('.close');
+    const closeButton = document.querySelector(".close");
+
+    closeButton.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks a button, open the modal and populate it
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const DatabaseAdministratorID = button.getAttribute('DatabaseAdministratorID');
+            const DatabaseAdministrator_Name = button.getAttribute('DatabaseAdministrator-Name');
+            const DatabaseAdministrator_Code = button.getAttribute('DatabaseAdministrator-Code');
+            const DatabaseAdministrator_Email = button.getAttribute('DatabaseAdministrator-Email');
+            const DatabaseAdministrator_Mobile = button.getAttribute('DatabaseAdministrator-Mobile');
+
+            document.getElementById('modalDatabaseAdministratorID').value = DatabaseAdministratorID;
+            document.getElementById('modalDatabaseAdministratorName').value = DatabaseAdministrator_Name;
+            document.getElementById('modalDatabaseAdministratorCode').value = DatabaseAdministrator_Code;
+            document.getElementById('modalDatabaseAdministratorEmail').value = DatabaseAdministrator_Email;
+            document.getElementById('modalDatabaseAdministratorMobile').value = DatabaseAdministrator_Mobile;
+
+            modal1.style.display = 'block';
+        });
+    });
+
+    //// When the user clicks on <span> (x), close the modal
+    //span.onclick = function () {
+    //    modal1.style.display = 'none';
+    //}
+
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal1) {
+            modal1.style.display = 'none';
+        }
+    }
+
+    function deleteRecord() {
+        const DatabaseAdministratorID = document.getElementById('modalDatabaseAdministratorID').value;
+
+        fetch(`/DatabaseAdministrator_Deletedata/${DatabaseAdministratorID}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                location.reload();
+            });
+    }
+
+</script>
+{% endblock %}

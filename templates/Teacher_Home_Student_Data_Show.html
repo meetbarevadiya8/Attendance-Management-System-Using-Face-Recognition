@@ -1,0 +1,56 @@
+{% extends 'Teacher_Home_Base.html' %}
+
+{% block css %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/Teacher_Home_Base1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Teacher_Home_Student_Data_Show.css' %}">
+{% endblock %}
+
+{% block title %}Profile Page{% endblock %}
+
+{% block content %}
+<div class="profilecontainer">
+    <h1 class="studentprofilename">{{ StudentData.Student_Name }}</h1>
+    <div class="profilephotocontainer">
+        <h2 class="studentprofilelable" id="studentprofilephotolable">Profile Photo:</h2>
+        <div class="studentprofilephotoimg">
+            {% if StudentData.Profile_Photo %}
+            <img src="{{ StudentData.Profile_Photo.url }}" alt="Profile Photo" width="200">
+            {% else %}
+            <p>No profile photo available.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="profilecontainer1">
+    <h1 class="studentprofile">Student Profile</h1>
+    <p><strong class="studentprofilelable">Student ID:</strong>
+    <div class="studentdata">{{ StudentData.StudentID }}</div>
+    </p>
+    <p><strong class="studentprofilelable">Name:</strong>
+    <div class="studentdata">{{ StudentData.Student_Name }}</div>
+    </p>
+    <div class="studentprofiledepatmentandsem">
+        <div class="studentprofiledepatmentandsem1">
+            <p class="studentprofiledepatmentandsemname"><strong class="studentprofilelable">Semestre:</strong>
+            <div class="studentdata">{{ StudentData.Semestre }}</div>
+            </p>
+        </div>
+        <div class="studentprofiledepatmentandsem2">
+            <p class="studentprofiledepatmentandsemname"><strong class="studentprofilelable">Department:</strong>
+            <div class="studentdata">{{ StudentData.Department }}</div>
+            </p>
+        </div>
+    </div>
+    <p><strong class="studentprofilelable">Email:</strong>
+    <div class="studentdata">{{ StudentData.Email }}</div>
+    </p>
+    <p><strong class="studentprofilelable">Mobile:</strong>
+    <div class="studentdata">{{ StudentData.Mobile }}</div>
+    </p>
+    <div class="profilecontainerbutton">
+        <!--<a href="{% url 'Student_Home_Profile' %}">Profile Update</a>-->
+        <a href="{% url 'Teacher_Home_Student_Data' %}">Back</a>
+    </div>
+</div>
+{% endblock %}

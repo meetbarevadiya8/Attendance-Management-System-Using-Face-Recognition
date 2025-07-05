@@ -1,0 +1,87 @@
+.continer{
+    /*border: 1px solid red;*/
+    display: inline-block;
+    padding: 1px;
+    width: -webkit-fill-available;
+    margin: 1px;
+    align-items: center;
+    justify-content: center;
+    height: -webkit-fill-available;
+}
+
+.videoframe{
+    /*border: 1px solid red;*/
+    width: 70%;
+    display: flex;
+    padding: 2px;
+    float: left;
+    align-items: center;
+    justify-content: center;
+    height: 92%;
+    margin: 5px;
+    margin-top: 1px;
+}
+
+.studentregistrationformlable{
+    font-size: larger;
+    margin-left: 10px;
+    background-color: transparent;
+    pointer-events: none;
+    
+}
+
+.studentregistrationforminput{
+    border: 2px solid #848482;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 3px;
+    width: -webkit-fill-available;
+    height: 20px;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    background-color: #d3d3d3;
+    padding: 5px;
+    
+}
+
+.Attendancedetail{
+    /*border: 1px solid red;*/
+    width: 25%;
+    display: flow-root;
+    flex: 1;
+    margin-bottom: 5px;
+    height: 90%;
+    margin: 5px;
+}
+
+.videostop{
+    width: 200px;
+    height: 40px;
+    border: 2px solid #848482;
+}
+
+.stopbutton{
+    /*border: 1px solid red;*/
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.stopbutton button{
+    margin: auto;
+    font-size: larger;
+}
+
+.homebutton a{
+    text-decoration: none;
+    color: #002147;
+}
+.homebutton{
+    /*border: 1px solid red;*/
+    padding: 5px;
+    color: #002147;
+    font-size: larger;
+    margin: auto;
+    margin-right: 0px;
+}

@@ -1,0 +1,40 @@
+{% extends 'Student_Home_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Student_Home_Subject_Attendance1.css">
+{% endblock %}
+
+{% block title %}Subject Attendance Page{% endblock %}
+{% block content1 %}
+<div class="homebutton">
+    <a href="{% url 'Student_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+{% endblock %}
+{% block content %}
+<div class="tablebody">
+    <table>
+        <thead>
+            <tr>
+                <th>Subject Name</th>
+                <th>Subject Code</th>
+                <th>Lacture</th>
+                <th>Lab</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Subject in Subject %}
+            <tr>
+                <td>{{ Subject.Subject_Name }}</td>
+                <td>{{ Subject.Subject_Code }}</td>
+                <td>{{ TotalAttendance }}</td>
+                <td>{{ Attendancedata.AttendanceDate }}</td>   
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No Data available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

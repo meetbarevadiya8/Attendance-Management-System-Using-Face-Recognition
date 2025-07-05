@@ -1,0 +1,206 @@
+{% extends 'DatabaseAdministrator_HomeBase.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/DatabaseAdministrator_DepartmentSemester.css">
+{% endblock %}
+
+{% block title %}TeacherData Page{% endblock %}
+{% block content1 %}
+
+<div class="homebutton">
+    <a href="{% url 'DatabaseAdministrator_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+
+
+<div class="addbutton">
+    <button id="addDataBtn" class="add-button">Add Data</button>
+</div>
+<!-- Add Data Modal -->
+<div id="addDataModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="close">&times;</span>
+        <div class="adddata">
+            <h2>Add Data</h2>
+        </div>
+        <form id="addDataForm" method="POST" action="{% url 'DepartmentandSemestre_AddNew' %}">
+            <div class="DepartmentandSemestreForm">
+                {% csrf_token %}
+                <label class="DepartmentandSemestreFormlable" for="Department_Code">DepartmentCode:</label>
+                <input class="DepartmentandSemestreForminput" type="number" id="Department_Code" name="Department_Code"
+                    required><br>
+
+                <label class="DepartmentandSemestreFormlable" for="Department_Name">Department Name:</label>
+                <input class="DepartmentandSemestreForminput" type="text" id="Department_Name" name="Department_Name"
+                    required><br>
+
+                <label class="DepartmentandSemestreFormlable" for="Semestre">Semestre:</label>
+                <input class="DepartmentandSemestreForminput" type="number" id="Semestre" name="Semestre" required><br>
+
+                <button type="Update" class="submit-button">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="tablebody">
+    <table>
+        <thead>
+            <tr class="columnname">
+                <th></th>
+                <th>Department ID</th>
+                <th>Department Name</th>
+                <th>Semestre</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for DepartmentandSemestre in DepartmentandSemestre %}
+            <tr>
+                <td class="columncenter">
+                    <button class="open-modal1"
+                        DepartmentandSemestre-ID="{{ DepartmentandSemestre.DepartmentandSemestreID }}"
+                        Department-Code="{{ DepartmentandSemestre.Department_Code }}"
+                        Department-Name="{{ DepartmentandSemestre.Department_Name }}"
+                        Semestre="{{DepartmentandSemestre.Semestre}}">
+                        Edit/Delete
+                    </button>
+                </td>
+                <td class="studentdatashowurl">
+                    {{ DepartmentandSemestre.Department_Code }}
+                </td>
+                <td>{{ DepartmentandSemestre.Department_Name }}</td>
+                <td>{{ DepartmentandSemestre.Semestre }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No Data available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Edit Modal -->
+<div id="itemModal1" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="adddata">
+            <h2>Edit Data</h2>
+            </div>
+
+        <form id="updateDataForm" method="POST" action="{% url 'DepartmentandSemestre_Updatedata' %}">
+            <div class="DepartmentandSemestreForm">
+                {% csrf_token %}
+                <!--<label class="DepartmentandSemestreFormlable" for="Department_Code">ID:</label>-->
+                <input class="DepartmentandSemestreForminput" type="hidden" id="modalDepartmentandSemestreID" name="DepartmentandSemestreID" required>
+
+                <label class="DepartmentandSemestreFormlable" for="Department_Code">DepartmentCode:</label>
+                <input class="DepartmentandSemestreForminput" type="number" id="modalDepartmentCode"
+                    name="Department_Code" required><br>
+
+                <label class="DepartmentandSemestreFormlable" for="Department_Name">Department Name:</label>
+                <input class="DepartmentandSemestreForminput" type="text" id="modalDepartmentName"
+                    name="Department_Name" required><br>
+
+                <label class="DepartmentandSemestreFormlable" for="Semestre">Semestre:</label>
+                <input class="DepartmentandSemestreForminput" type="number" id="modalSemestre" name="Semestre"
+                    required><br>
+                <div class="UpdateandDeletebutton">
+                <button type="update" class="submit-button">Update</button>
+                <button onclick="deleteRecord()" type="delete" id="deletebutton" class="submit-button">Delete</button>
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("addDataModal");
+    const addDataBtn = document.getElementById("addDataBtn");
+    const closeBtn = document.querySelector(".close");
+
+    // Open modal
+    addDataBtn.onclick = function () {
+        modal.style.display = "block";
+    };
+
+    // Close modal
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // Close modal if clicked outside of it
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+</script>
+
+
+<script>
+    // Get modal element
+    const modal1 = document.getElementById('itemModal1');
+
+    // Get all buttons that open the modal
+    const openModalButtons = document.querySelectorAll('.open-modal1');
+
+    // Get the <span> element that closes the modal
+    //const closeBtn1 = document.querySelector('.close');
+    const closeButton = document.querySelector(".close");
+
+    closeButton.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks a button, open the modal and populate it
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const DepartmentandSemestreID = button.getAttribute('DepartmentandSemestre-ID');
+            const Department_Code = button.getAttribute('Department-Code');
+            const Department_Name = button.getAttribute('Department-Name');
+            const Semestre = button.getAttribute('Semestre');
+
+            document.getElementById('modalDepartmentandSemestreID').value = DepartmentandSemestreID;
+            document.getElementById('modalDepartmentCode').value = Department_Code;
+            document.getElementById('modalDepartmentName').value = Department_Name;
+            document.getElementById('modalSemestre').value = Semestre;
+
+            modal1.style.display = 'block';
+        });
+    });
+
+    //// When the user clicks on <span> (x), close the modal
+    //span.onclick = function () {
+    //    modal1.style.display = 'none';
+    //}
+
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal1) {
+            modal1.style.display = 'none';
+        }
+    }
+
+    function deleteRecord() {
+            const DepartmentandSemestreID = document.getElementById('modalDepartmentandSemestreID').value;
+
+            fetch(`/DepartmentandSemestre_Deletedata/${DepartmentandSemestreID}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                location.reload();
+            });
+        }
+
+</script>
+
+{% endblock %}

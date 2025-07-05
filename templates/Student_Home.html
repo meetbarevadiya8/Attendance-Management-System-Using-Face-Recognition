@@ -1,0 +1,17 @@
+{% extends 'Student_Home_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Student_Home1.css">
+{% endblock %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<div class="menu-container">
+    <a href="{% url 'Student_Home_Profile' %}"><div class="textshow">Profile</div></a>
+    <a href="{% url 'Student_Home_Attendance_Show' %}"><div class="textshow">Attendance</div></a>
+    <a href="{% url 'Student_Home_Subject_Attendance' %}"><div class="textshow">Subject Attendance</div></a>
+    <a href="{% url 'Student_Home_Subject_Attendance' %}"><div class="textshow">Subject Attendance</div></a>
+</div>
+<!--<h2>Welcome, {{ StudentID }}!</h2>-->
+{% endblock %}

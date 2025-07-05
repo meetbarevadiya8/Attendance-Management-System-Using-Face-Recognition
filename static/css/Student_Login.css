@@ -1,0 +1,88 @@
+/* Container for the login form */
+.studentlogin {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0 1rem;
+    color: white;
+}
+
+/* Form Styling */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Label Styling */
+.studentloginformlable {
+    display: block;
+    margin: 1rem 0 0.3rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Input Styling */
+.studentloginforminput {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.studentloginforminput:focus {
+    border-color: #0077cc;
+    outline: none;
+}
+
+/* Button Container */
+.buttoncontainer {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.buttoncontainer button {
+    background-color: #0077cc;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.buttoncontainer button:hover {
+    background-color: #005fa3;
+}
+
+/* Message Styling */
+.studentloginformmessages {
+    max-width: 400px;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.studentloginformmessages h3 {
+    color: red;
+    font-size: 1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 500px) {
+    form {
+        padding: 1.5rem 1rem;
+    }
+
+    .studentlogin {
+        font-size: 1.5rem;
+    }
+
+    .buttoncontainer button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,292 @@
+body{
+    margin: 0;
+    padding-top: 50px;
+    display: flex;
+    background-image: url('/static/images/Logo2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px); /* 👈 this applies the blur */
+    background-color: rgba(255,255,255,0.1); /* optional: light overlay */
+    z-index: 1;
+}
+.container{
+        position: fixed; /* Set position to fixed */
+        top: 0; /* Position it at the top of the viewport */
+        left: 0; /* Align to the left */
+        width: 99%; /* Full width */
+        height: 40px; /* Set height for the fixed container */
+        background-color: rgba(255, 255, 255, 0.9); /* Background color with some transparency */
+        border-bottom: 1px solid #ccc; /* Optional border */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+        z-index: 1000; /* Ensure it's above other content */
+        margin: 5px;
+        border: 3px solid #848482;
+        border-radius: 8px;
+        color: white;
+        display: flex;
+        background: none;
+}
+.containerblur{
+        position: relative;
+        z-index: 2; /* content stays above blur */
+}
+
+h1{
+    /*border: 1px solid red;*/
+    margin: 0px;
+    margin-left: 15px;
+    width: max-content;
+}
+
+main{
+    border: 3px solid #848482;
+    margin: 5px;
+    width: 99%;
+    height: 540px;
+    /*padding: 10px;*/
+    align-items: center;
+    border-radius: 8px;
+    overflow: scroll;
+    position: fixed;
+    scrollbar-width: none;
+}
+
+.container1{
+    /*border: 1px solid red;*/
+    width: 99%;
+    margin: 5px;
+    height: -webkit-fill-available;
+}
+
+.addbutton{
+    border: 2px solid red;
+    width: 120px;
+    font-size: x-large;
+    padding: 0px;
+    border: none;
+    background: none;
+    /*margin-right: 0px;*/
+    color: white;
+    position: relative;
+    display: flex;
+}
+
+.maintext{
+    /*border: 1px solid red;*/
+    width: -webkit-fill-available;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    /*text-align: center;*/
+}
+/* Modal Content */
+.modal-content1 {
+    background-color: #d3d3d3;
+    margin: 1% auto;
+    padding: 10px;
+    border: 2px solid #848482;
+    width: 50%;
+    height: 90%;
+
+}
+/* Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Buttons */
+.logout-button {
+    padding: 5px 10px;
+    color: white;
+    /*background-color: red;*/
+    border: none;
+    cursor: pointer;
+    font-size: larger;
+    margin: auto;
+    background: none;
+    margin-right: 0px;
+}
+
+.confirm-button {
+    padding: 10px 20px;
+    width: 100px;
+    color: white;
+    background-color: #fefefe;
+    border: 2px solid #848482;
+    cursor: pointer;
+    margin: auto;
+    margin-left: 40%;
+}
+
+.cancel-button {
+    width: 100px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #fefefe;
+    border: 2px solid #848482;
+    cursor: pointer;
+    margin: auto;
+    margin-left: 30%;
+}
+
+.profilebutton{
+    /*margin: 2px 15px;*/
+    /*border: 1px solid red;*/
+    position: relative;
+    margin-left: 7px;
+    margin: auto;
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+.TeacherProfileForminput{
+    border: 2px solid #848482;
+    margin-bottom: 4px;
+    margin-left: 10px;
+    margin-right: 3px;
+    margin-top: 8px;
+    width: -webkit-fill-available;
+    height: 25px;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    background-color: #d3d3d3;
+    padding-left: 5px;
+}
+
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-thumb {
+  width: 26px;
+  border-radius: 13px;
+  background-clip: padding-box;
+  border: 11px solid transparent;
+  color: white;
+}
+
+*::-webkit-scrollbar-thumb {        
+    color: white;
+  box-shadow: inset 0 0 0 10px;
+}
+
+.open-modal1{
+    font-size: larger;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.submit-button {
+    padding: 5px 10px;
+    width: 150px;
+    font-size: large;
+    margin: 3px;
+    margin-top: 10px;
+    color: white;
+    background-color: #d3d3d3;
+    border: 2px solid #848482;
+    cursor: pointer;
+    margin: auto;
+}
+
+
+.UpdateandDeletebutton{
+    /*border: 1px solid red;*/
+    display: flex;
+    margin-top: 10px;
+}
+
+.photoandiddepatmentsemestre{
+    /*border: 1px solid red;*/
+    display: flex;
+
+}
+.iddepartmentsemestre{
+    /*border: 1px solid red;*/
+    width: 55%;
+}
+.profilephotocontainer{
+    /*border: 1px solid red;*/
+    width: 45%;
+    
+}
+
+.teacherprofilephotoimg{
+    /*border: 1px solid red;*/
+    /*padding-left: 70px;*/
+    margin: 0px;
+    display: flex;
+}
+
+img#modalProfilePhoto{
+    margin:auto;
+}
+.TeacherProfileFormlable{
+    font-size: 20px;
+    margin-left: 10px;
+    background-color: transparent;
+    pointer-events: none;
+    text-align: start;
+    margin-left: 10px;
+    
+}
+
+.logoutmodalbutton{
+    /*border: 1px solid red;*/
+    display: flex;
+}

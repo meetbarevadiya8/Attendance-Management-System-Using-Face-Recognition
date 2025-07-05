@@ -1,0 +1,81 @@
+{% extends 'Student_Home_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Student_Home_Attendance_Show1.css">
+{% endblock %}
+
+{% block title %}Attendance Page{% endblock %}
+
+{% block content1 %}
+<div class="homebutton">
+    <a href="{% url 'Student_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+{% endblock %}
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="studentidfilter">
+        <div class="studentidfilter1">
+            <label class="semestreanddepartmentfilterlable" for="Subject_Code">Subject Code:</label>
+            <input class="semestreanddepartmentfilterinput" type="number" id="Subject_Code" name="Subject_Code"><br>
+            <h4 class="lableor">Or</h4>
+        </div>
+        <div class="studentidfilter1">
+            <label class="semestreanddepartmentfilterlable" for="Subject_Name">Subject Name:</label>
+            <input class="semestreanddepartmentfilterinput" type="text" id="Subject_Name" name="Subject_Name"><br>
+            <h4 class="lableor">Or</h4>
+        </div>
+        <div class="studentidfilter1">
+            <!--<label class="semestreanddepartmentfilterlable" for="StudentID">Student ID:</label>
+            <input class="semestreanddepartmentfilterinput" type="number" id="StudentID" name="StudentID"><br>
+            <h4 class="lableor">Or</h4>-->
+        </div>
+        <div class="studentidfilter1">
+            <label class="semestreanddepartmentfilterlable" for="AttendanceDay">&emsp;&emsp;&emsp;&ensp;&nbsp;Day:</label>
+            <!--<input class="semestreanddepartmentfilterinput" type="text" id="AttendanceDay" name="AttendanceDay"><br>-->
+            <select class="semestreanddepartmentfilterinput" id="AttendanceDay" name="AttendanceDay">
+                <option value="" selected>Select Day</option>
+                <option value="MonDay">MonDay</option>
+                <option value="TuesDay">TuesDay</option>
+                <option value="SaturDay">SaturDay</option>
+            </select>
+            <h4 class="lableor">Or</h4>
+        </div>
+        <div class="studentidfilter1">
+            <label class="semestreanddepartmentfilterlable" for="AttendanceDate">&emsp;&emsp;&emsp;&ensp;&nbsp;Date:</label>
+            <input class="semestreanddepartmentfilterinput" type="Date" id="AttendanceDate" name="AttendanceDate"><br>
+        </div>
+        <button type="submit">Show Students</button>
+    </div>
+</form>
+<div class="tablebody">
+    <table>
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Subject Name</th>
+                <th>Subject Code</th>
+                <th>Day</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Attendancedata in Attendancedata %}
+            <tr>
+                <td class="attendancedateshowurl">
+                        {{ Attendancedata.StudentID }}
+                </td>
+                <td>{{ Attendancedata.Subject_Name }}</td>
+                <td>{{ Attendancedata.Subject_Code }}</td>
+                <td>{{ Attendancedata.AttendanceDay }}</td>
+                <td>{{ Attendancedata.AttendanceDate }}</td>    
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No Data available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

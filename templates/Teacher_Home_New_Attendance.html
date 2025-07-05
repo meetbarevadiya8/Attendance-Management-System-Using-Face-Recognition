@@ -1,0 +1,69 @@
+{% extends 'Teacher_Home_Base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/Teacher_Home_New_Attendance.css' %}">
+<link rel="stylesheet" href="../static/css/Teacher_Home_New_Attendance1.css">
+{% endblock %}
+
+{% block title %}Profile Page{% endblock %}
+
+{% block content1 %}
+<div class="homebutton">
+    <a href="{% url 'Teacher_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+{% endblock %}
+
+{% block content %}
+<h1>Live Face Recognition</h1>
+<div class="continer">
+    <div class="videoframe">
+        <!--<p>Subject: {{ request.session.SubjectName }} | Code: {{ request.session.SubjectCode }}</p>-->
+        <!--<video id="video" autoplay="true" width="640" height="480">
+        <source src="{% url 'video_feed' %}" type="video/mp4">
+    </video>-->
+        <img src="{% url 'video_feed' %}" width="720" height="480" />
+        <!--<video id="video" width="740" height="480" autoplay></video>
+<canvas id="canvas" width="740" height="480" style="display:none;"></canvas>-->
+    </div>
+    <div class="Attendancedetail">
+        <label class="studentregistrationformlable" for="Department">Department:</label>
+        <p class="studentregistrationforminput">{{ request.session.Department }}</p>
+
+        <label class="studentregistrationformlable" for="Semestre">Semestre:</label>
+        <p class="studentregistrationforminput">{{ request.session.Semestre }}</p>
+
+        <label class="studentregistrationformlable" for="SubjectName">Subject Name:</label>
+        <p class="studentregistrationforminput">{{ request.session.SubjectName }}</p>
+        <!--<input class="studentregistrationforminput" type="Code" id="SubjectName" name="SubjectName" required><br>-->
+
+
+        <label class="studentregistrationformlable" for="SubjectCode">Subject Code:</label>
+        <p class="studentregistrationforminput">{{ request.session.SubjectCode }}</p>
+        <div class="stopbutton">
+            <button id="stopButton" class="videostop">Stop</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("stopButton").addEventListener("click", function () {
+        fetch("{% url 'stop_feed' %}", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": "{{ csrf_token }}", // CSRF token for security
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Video feed and attendance stopped successfully!");
+            } else {
+                alert("Error stopping the video feed.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    });
+</script>
+
+
+{% endblock %}

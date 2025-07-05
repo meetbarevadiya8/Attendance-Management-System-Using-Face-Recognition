@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    padding-top: 50px;
+    display: flex;
+    background-color: #d3d3d3;
+}
+
+.container {
+    position: fixed;/* Set position to fixed */
+    top: 0;/* Position it at the top of the viewport */
+    left: 0;/* Align to the left */
+    width: 99%;/* Full width */
+    height: 40px;/* Set height for the fixed container */
+    background-color: #d3d3d3;/* Background color with some transparency */
+    border-bottom: 1px solid #848482;/* Optional border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);/* Optional shadow */
+    z-index: 1000;/* Ensure it's above other content */
+    margin: 5px;
+    border: 3px solid #848482;
+    border-radius: 8px;
+    color: #002147;
+    display: flex;
+}
+
+h1 {
+    background-color: #d3d3d3;
+    margin: 0px;
+    margin-left: 15px;
+}
+
+main {
+    border: 3px solid #848482;
+    margin: 5px;
+    width: 99%;
+    height: 520px;
+    /*padding: 10px;*/
+    align-items: center;
+    color: #002147;
+}
+
+main{
+    border: 3px solid #848482;
+    margin: 5px;
+    width: 99%;
+    height: 540px;
+    /*padding: 10px;*/
+    align-items: center;
+    border-radius: 8px;
+    overflow: scroll;
+    position: fixed;
+    scrollbar-width: none;
+}

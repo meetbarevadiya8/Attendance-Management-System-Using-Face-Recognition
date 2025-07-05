@@ -1,0 +1,111 @@
+table {
+    width: 98.5%;
+    border-collapse:separate;
+    overflow: auto;
+    margin: 0px 8px;
+    color: white;
+}
+th, td {
+    /*border: 1px solid #ddd;*/
+    border: 1px solid white;
+    padding: 8px;
+    text-align: left;
+    width: 90px;
+    border-radius: 2px;
+}
+th {
+    background-color: #0077cc;
+    border: 2px solid white;
+    border-radius: 2px;
+}
+tr:hover {
+    background-color: #0077cc;
+}
+
+.attendancedateshowurl{
+    text-decoration: none;
+    text-align: center;
+}
+
+.studentidfilter{
+    border: 2px solid white;
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2px;
+    border-radius: 7px;
+    padding-bottom: 2px;
+}
+
+
+.studentidfilter .semestreanddepartmentfilterinput{
+    height: 25px;
+    margin-right: 20px;
+    margin-left: 5px;
+    width: 200px;
+    height: 25px;
+}
+
+.studentidfilter #AttendanceDay{
+    height: 33px;
+    width: 205px;
+}
+
+.studentidfilter #AttendanceDate{
+    height: 30px;
+    width: 205px;
+}
+
+.semestreanddepartmentfilterlable{
+    font-size: larger;
+    margin-left: 10px;
+    background-color: transparent;
+    pointer-events: none;
+    color: white;
+}
+
+.studentidfilter1{
+    /*border: 1px solid red;*/
+    width: 32%;
+    padding: 3px;
+    display: flex;
+}
+
+.studentidfilter button{
+    width: 150px;
+    height: 30px;
+    margin: auto;
+    margin-left: 15px;
+    font-size: medium;
+    border: 2px solid #848482;
+    color: #002147;
+}
+
+h4.lableor{
+    margin: 0px;
+    margin-top: 5px;
+    color: #002147;
+}
+
+.attendancedateshowurl a{
+    text-decoration: none;
+    text-align: center;
+}
+
+.attendancedateshowurl{
+    text-align: center;
+    color: red;
+}
+
+.homebutton a{
+    text-decoration: none;
+    color: #002147;
+}
+.homebutton{
+    /*border: 1px solid red;*/
+    padding: 5px;
+    color: #002147;
+    font-size: larger;
+    margin: auto;
+    margin-right: 0px;
+}

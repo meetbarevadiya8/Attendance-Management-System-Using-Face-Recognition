@@ -1,0 +1,210 @@
+{% extends 'DatabaseAdministrator_HomeBase.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/DatabaseAdministrator_TeacherLectureData1.css">
+{% endblock %}
+
+{% block title %}Home Page{% endblock %}
+{% block content1 %}
+
+<div class="homebutton">
+    <a href="{% url 'DatabaseAdministrator_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+{% endblock %}
+{% block content %}
+<!--<form method="POST">
+    {% csrf_token %}
+    <div class="semestreanddepartmentfilter">
+        <div class="semestreanddepartmentfilter1">
+            <label class="semestreanddepartmentfilterlable" for="Semestre">Semester Number:</label>
+            <select class="semestreanddepartmentfilterinput" id="Semestre" name="Semestre">
+                <option value="" selected>Select Semestre</option>
+                <option value=1>1</option>
+                <option value=3>3</option>
+                <option value=5>5</option>
+            </select>
+        </div>
+        <div class="semestreanddepartmentfilter2">
+            <label class="semestreanddepartmentfilterlable" for="Semestre">Semester Department:</label>
+            <select class="semestreanddepartmentfilterinput" id="Department" name="Department">
+                <option value="" selected>Select Department</option>
+                {% for DepartmentandSemestre in DepartmentandSemestre %}
+                <option class="selectvalue" value={{ DepartmentandSemestre }}>{{ DepartmentandSemestre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit">Show Students</button>
+    </div>
+</form>-->
+<!--<form method="POST">
+    {% csrf_token %}
+    <div class="studentidfilter">
+        <div class="studentidfilter1">
+            <label class="semestreanddepartmentfilterlable" for="StudentID">Student ID:</label>
+            <input class="semestreanddepartmentfilterinput" type="number" id="StudentID" name="StudentID"><br>
+        </div>
+        <button type="submit">Show Students</button>
+    </div>
+</form>-->
+
+<div class="tablebody">
+    <table>
+        <thead>
+            <tr>
+                <th id="TeacherID">Teacher ID</th>
+                <th>Name</th>
+                <th id="Departmentcolumn">Department</th>
+                <th id="Semestre">Semestre</th>
+                <th id="SubjectName">Subject Name</th>
+                <th id="SubjectCode">Subject Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for TeacherLectureDataList in TeacherLectureDataList %}
+            <tr>
+                <td class="columncenter">
+                    <button class="open-modal" StudentID="{{ StudentData.StudentID }}"
+                        Student-Name="{{ StudentData.Student_Name }}" Department="{{ StudentData.Department }}"
+                        Semestre="{{StudentData.Semestre}}" Email="{{StudentData.Email}}"
+                        Mobile="{{StudentData.Mobile}}" Profile-Photo="{{ StudentData.Profile_Photo.url }}">
+                        {{ TeacherLectureDataList.TeacherID}}
+                    </button>
+                </td>
+                <td>{{ TeacherLectureDataList.Teacher_Name }}</td>
+                <td>{{ TeacherLectureDataList.Department }}</td>
+                <td>{{ TeacherLectureDataList.Semestre }}</td>
+                <td>{{ TeacherLectureDataList.Subject_Name }}</td>
+                <td>{{ TeacherLectureDataList.Subject_Code }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No Data available.</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Edit Modal -->
+<div id="itemModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="adddata">
+            <p class="editdatalable">Edit Data</p>
+        </div>
+
+        <form id="updateDataForm" method="POST" action="{% url 'StudentData_Updatedata' %}">
+            <div class="DepartmentandSemestreForm">
+                {% csrf_token %}
+                <div class="photoandiddepatmentsemestre">
+                <div class="profilephotocontainer">
+                    <!--<h2 class="studentprofilelable" id="studentprofilephotolable">Profile Photo:</h2>-->
+                    <label class="StudentDataFormlable" >Profile Photo:</label>
+                    <div class="studentprofilephotoimg">
+                        <img id="modalProfilePhoto" alt="Profile Photo"
+                            style="display: none; width: 120px; height: auto;" />
+                        <p id="noPhotoText" style="display: none;">No profile photo available.</p>
+                    </div>
+                </div>
+                <div class="iddepartmentsemestre">
+                    <label class="StudentDataFormlable" for="StudentID">ID:</label>
+                    <input class="StudentDataForminput" type="number" id="modalStudentID" name="StudentID" required><br>
+
+                    <label class="StudentDataFormlable" id="Department" for="Department">Department:</label>
+                    <input class="StudentDataForminput" type="text" id="modalDepartment" name="Department" required><br>
+
+                    <label class="StudentDataFormlable" for="Semestre">Semestre:</label>
+                    <input class="StudentDataForminput" type="number" id="modalSemestre" name="Semestre" required><br>
+                </div>
+            </div>
+                <label class="StudentDataFormlable" for="Student_Name">Name:</label>
+                <input class="StudentDataForminput" type="text" id="modalStudentName" name="Student_Name" required><br>
+
+                <label class="StudentDataFormlable" for="Email">Email:</label>
+                <input class="StudentDataForminput" type="email" id="modalEmail" name="Email" required><br>
+
+                <label class="StudentDataFormlable" for="Mobile">Mobile:</label>
+                <input class="StudentDataForminput" type="number" id="modalMobile" name="Mobile" required><br>
+                <div class="UpdateandDeletebutton">
+                    <button type="update" class="submit-button">Update</button>
+                    <button onclick="deleteRecord()" type="delete" id="deletebutton"
+                        class="submit-button">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    // Get modal element
+    const modal = document.getElementById('itemModal');
+
+    // Get all buttons that open the modal
+    const openModalButtons = document.querySelectorAll('.open-modal');
+
+    // Get the <span> element that closes the modal
+    //const closeBtn1 = document.querySelector('.close');
+    const closeBtn = document.querySelector(".close");
+
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks a button, open the modal and populate it
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const StudentID = button.getAttribute('StudentID');
+            const Student_Name = button.getAttribute('Student-Name');
+            const Department = button.getAttribute('Department');
+            const Semestre = button.getAttribute('Semestre');
+            const Email = button.getAttribute('Email');
+            const Mobile = button.getAttribute('Mobile');
+            const Profile_Photo = button.getAttribute('Profile-Photo');
+
+            document.getElementById('modalStudentID').value = StudentID;
+            document.getElementById('modalStudentName').value = Student_Name;
+            document.getElementById('modalDepartment').value = Department;
+            document.getElementById('modalSemestre').value = Semestre;
+            document.getElementById('modalEmail').value = Email;
+            document.getElementById('modalMobile').value = Mobile;
+            const modalProfilePhoto = document.getElementById('modalProfilePhoto');
+            if (Profile_Photo) {
+                modalProfilePhoto.src = Profile_Photo;
+                modalProfilePhoto.style.display = 'block'; // Show the image
+            } else {
+                modalProfilePhoto.style.display = 'none'; // Hide if no image available
+            }
+            modal.style.display = 'block';
+        });
+    });
+
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    function deleteRecord() {
+        const StudentID = document.getElementById('modalStudentID').value;
+
+        fetch(`/StudentData_Deletedata/${StudentID}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                location.reload();
+            });
+    }
+
+</script>
+
+{% endblock %}

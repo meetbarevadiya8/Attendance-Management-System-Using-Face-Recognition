@@ -1,0 +1,60 @@
+.AttendanceSubjectSelect{
+    border: 2px solid #848482;
+    width: 400px;
+    height: 500px;
+    margin: auto;
+    margin-top: 20px;
+
+}
+
+.studentregistrationformlable{
+    font-size: larger;
+    margin-left: 10px;
+    background-color: transparent;
+    pointer-events: none;
+    
+}
+
+.studentregistrationforminput{
+    border: 2px solid #848482;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 3px;
+    width: -webkit-fill-available;
+    height: 30px;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    background-color: #d3d3d3;
+    padding-left: 5px;
+}
+
+.buttoncontainer{
+    border: 0px solid #848482;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.buttoncontainer button{
+    width: 200px;
+    height: 35px;
+    font-size: larger;
+    background-color: #d3d3d3;
+    color: #002147;
+    border: 2px solid #848482;
+}
+
+.homebutton a{
+    text-decoration: none;
+    color: #002147;
+}
+.homebutton{
+    /*border: 1px solid red;*/
+    padding: 5px;
+    color: #002147;
+    font-size: larger;
+    margin: auto;
+    margin-right: 0px;
+}

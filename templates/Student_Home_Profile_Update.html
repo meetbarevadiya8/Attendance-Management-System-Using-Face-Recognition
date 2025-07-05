@@ -1,0 +1,85 @@
+{% extends 'Student_Home_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Student_Home_Profile_Update1.css">
+{% endblock %}
+
+{% block title %}Profile Page{% endblock %}
+
+{% block content %}
+<div class="profilecontainer">
+    <h1 class="studentprofile">Welcome, {{ student.Student_Name }}!</h1>
+    <div class="profilephotocontainer">
+        <h2 class="studentprofilelable" id="studentprofilephotolable">Profile Photo:</h2>
+        <div class="studentprofilephotoimg">
+            {% if student.Profile_Photo %}
+            <img src="{{ student.Profile_Photo.url }}" alt="Profile Photo" width="200">
+            {% else %}
+            <p>No profile photo available.</p>
+            {% endif %}
+        </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="profilephotoupload">
+            <label class="profilephotouploadlable" for="Profile_Photo">Profile Photo:</label>
+            <input class="profilephotouploadinput" type="file" id="Profile_Photo" name="Profile_Photo"><br>
+            <div class="profilephotouploadbutton">
+                <button class="profilephotouploadbuttonteg" type="submit">Upload Photo</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="profilecontainer1">
+    <h1 class="studentprofile">Student Profile</h1>
+    <p><strong class="studentprofilelable">Student ID:</strong>
+    <div class="studentdata">{{ student.StudentID }}</div>
+    </p>
+    <p><strong class="studentprofilelable">Name:</strong>
+    <div class="studentdata">{{ student.Student_Name }}</div>
+    </p>
+    <div class="studentprofiledepatmentandsem">
+        <div class="studentprofiledepatmentandsem1">
+            <p class="studentprofiledepatmentandsemname"><strong class="studentprofilelable">Semestre:</strong>
+            <div class="studentdata">{{ student.Semestre }}</div>
+            </p>
+        </div>
+        <div class="studentprofiledepatmentandsem2">
+            <p class="studentprofiledepatmentandsemname"><strong class="studentprofilelable">Department:</strong>
+            <div class="studentdata">{{ student.Department }}</div>
+            </p>
+        </div>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <label class="studentprofilelable" for="Old_Email"><strong>Email:</strong></label>
+        <input class="studentdata" type="email" id="Old_Email" name="Old_Email" placeholder="{{ student.Email }}" required><br>
+        <label class="studentprofilelable" for="Old_Mobile"><strong>Mobile:</strong></label>
+        <input class="studentdata" type="number" id="Old_Mobile" name="Old_Mobile" placeholder="{{ student.Mobile }}" required><br>
+        <div class="profilecontainerbutton">
+            <button type="submit">Update</button>
+            <a href="{% url 'Student_Home_Profile' %}">Back</a>
+        </div>
+    </form>
+    <!--<form action="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            <strong class="studentprofilelable">Email:</strong>
+            <label class="studentprofilelable" for="Email">Email:</label>
+            <input class="studentdata" type="Email" id="Old_Email" name="Old_Email" placeholder="{{ student.Email }}"
+            required><br>
+        </p>
+        <p>
+            <strong class="studentprofilelable">Mobile:</strong>
+            <label class="studentprofilelable" for="Mobile">Mobile:</label>
+            <input class="studentdata" type="number" id="Old_Mobile" name="Old_Mobile" placeholder="{{ student.Mobile }}"
+                required><br>
+        </p>
+        <div class="profilecontainerbutton">
+            <a href="{% url 'Student_Home_Profile' %}">Profile Update</a>
+        <a href="{% url 'Student_Home_Profile_Password_Change' %}">Password Change</a>
+            <button>Profile Update</button>
+        </div>
+    </form>-->
+</div>
+{% endblock %}

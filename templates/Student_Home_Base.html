@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/Student_Home_Base1.css">
+    {% block css %}
+    {% endblock %}
+
+    <title>{% block title %}Home Page{% endblock %}</title>
+</head>
+
+<body>
+    <div class="background-blur"></div>
+    <div class="containerblur">
+    <div class="container">
+        <div class="maintext">
+            <h1 class="fix-container">Attendance Management System</h1>
+        </div>
+        <div class="addbutton">
+            {% block content1 %}
+            <button id="logoutBtn" class="logout-button"><i class='fa fa-sign-out'></i>
+            </button>
+            <!-- Logout Modal -->
+            <div id="logoutModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Are you sure you want to log out?</p>
+                    <div class="logoutmodalbutton">
+                        <form method="POST" action="{% url 'Studentlogout' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="confirm-button">Yes</button>
+                        </form>
+                        <button class="cancel-button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+            <!--{{ TeacherData.TeacherID }}-->
+            <div class="profilebutton">
+                <button class="open-modal1" StudentID="{{ StudentData.StudentID }}"
+                    Student-Name="{{ StudentData.Student_Name }}" Department="{{StudentData.Department}}"
+                    Email="{{StudentData.Email}}" Mobile="{{ StudentData.Mobile }}"
+                    Semestre="{{ StudentData.Semestre }}" Profile-Photo="{{ StudentData.Profile_Photo.url }}"
+                    id="profilebutton"><i class='fa fa-user-circle'></i></button>
+            </div>
+            <div id="itemModal1" class="modal">
+                <div class="modal-content1">
+                    <span class="close">&times;</span>
+                    <div class="adddata">
+                        <h2>Edit Data</h2>
+                    </div>
+                    <!--<form id="updateDataForm" method="POST" action="{% url 'SubjectData_Updatedata' %}">-->
+                    <div class="DepartmentandSemestreForm">
+                        {% csrf_token %}
+                        <div class="photoandiddepatmentsemestre">
+                            <div class="profilephotocontainer">
+                                <label class="StudentDataFormlable">Profile Photo:</label>
+                                <div class="studentprofilephotoimg">
+                                    <img id="modalProfilePhoto" alt="Profile Photo"
+                                        style="display: none; width: 120px; height: auto;" />
+                                    <p id="noPhotoText" style="display: none;">No profile photo available.</p>
+                                </div>
+
+                            </div>
+                            <div class="iddepartmentsemestre">
+                                <label class="StudentProfileFormlable" for="StudentID">ID:</label>
+                                <input class="StudentProfileForminput" type="number" id="modalStudentID"
+                                    name="StudentID" readonly required><br>
+
+                                <label class="StudentProfileFormlable" for="modalDepartment">Department:</label>
+                                <input class="StudentProfileForminput" type="text" id="modalDepartment" name="StudentID"
+                                    readonly required><br>
+
+                                <label class="StudentProfileFormlable" for="Semestre">Semestre:</label>
+                                <input class="StudentProfileForminput" type="number" id="modalSemestre" name="Semestre"
+                                    readonly required><br>
+                            </div>
+                        </div>
+                        <label class="StudentProfileFormlable" for="Student_Name">Student Name:</label>
+                        <input class="StudentProfileForminput" type="text" id="modalStudentName" name="Student_Name"
+                            readonly required><br>
+
+
+
+                        <label class="StudentProfileFormlable" for="Email">Email:</label>
+                        <input class="StudentProfileForminput" type="email" id="modalEmail" name="Email" readonly
+                            required><br>
+
+                        <label class="StudentProfileFormlable" for="Mobile">Mobile:</label>
+                        <input class="StudentProfileForminput" type="number" id="modalMobile" name="Mobile" readonly
+                            required><br>
+
+                    </div>
+                    <!--</form>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <main>
+        <div class="container1">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+</div>
+    <!--<h2>Welcome, {{ StudentData.StudentID }}!</h2>-->
+    <!--<a href="{% url 'Student_Home' %}">Go to Profile</a>-->
+
+    <script>
+        // Get modal element
+        const modal = document.getElementById("logoutModal");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const closeBtn = document.querySelector(".close");
+        const cancelButton = document.querySelector(".cancel-button");
+
+        // Open modal
+        logoutBtn.onclick = function () {
+            modal.style.display = "block";
+        };
+
+        // Close modal on 'x' button
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        };
+
+        // Close modal on cancel button
+        cancelButton.onclick = function () {
+            modal.style.display = "none";
+        };
+
+        // Close modal if clicked outside of it
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+
+    <script>
+        // Get modal element
+        const modal1 = document.getElementById('itemModal1');
+
+        // Get all buttons that open the modal
+        const openModalButtons = document.querySelectorAll('.open-modal1');
+
+        // Get the <span> element that closes the modal
+        //const closeBtn1 = document.querySelector('.close');
+        const closeButton = document.querySelector('.close');
+
+        closeButton.onclick = function () {
+            modal.style.display = "none";
+        };
+
+        // When the user clicks a button, open the modal and populate it
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const StudentID = button.getAttribute('StudentID');
+                const Student_Name = button.getAttribute('Student-Name');
+                const Department = button.getAttribute('Department');
+                const Semestre = button.getAttribute('Semestre');
+                const Email = button.getAttribute('Email');
+                const Mobile = button.getAttribute('Mobile');
+                const Profile_Photo = button.getAttribute('Profile-Photo');
+
+
+                document.getElementById('modalStudentID').value = StudentID;
+                document.getElementById('modalStudentName').value = Student_Name;
+                document.getElementById('modalDepartment').value = Department;
+                document.getElementById('modalSemestre').value = Semestre;
+                document.getElementById('modalEmail').value = Email;
+                document.getElementById('modalMobile').value = Mobile;
+                const modalProfilePhoto = document.getElementById('modalProfilePhoto');
+                if (Profile_Photo) {
+                    modalProfilePhoto.src = Profile_Photo;
+                    modalProfilePhoto.style.display = 'block'; // Show the image
+                } else {
+                    modalProfilePhoto.style.display = 'none'; // Hide if no image available
+                }
+
+                modal1.style.display = 'block';
+            });
+
+        });
+
+        //// When the user clicks on <span> (x), close the modal
+        //span.onclick = function () {
+        //    modal1.style.display = 'none';
+        //}
+
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal1) {
+                modal1.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+.homebutton a{
+    text-decoration: none;
+    color: white;
+}
+.homebutton{
+    /*border: 1px solid red;*/
+    padding: 5px;
+    color: white;
+    font-size: larger;
+    margin: auto;
+    margin-right: 10px;
+}
+
+table {
+    width: 99%;
+    border-collapse:separate;
+    overflow: auto;
+    border: 2px solid white;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 3px;
+    color: white;
+}
+
+th, td {
+    /*border: 1px solid #ddd;*/
+    border: 1px solid white;
+    padding: 8px;
+    text-align: left;
+    border-radius: 3px;
+}
+
+th {
+    background-color: #0077cc;
+    text-align: center;
+    color: #002147;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+#TeacherID{
+    width: 120px;
+}
+#Departmentcolumn{
+    width: 150px;
+}
+#Semestre{
+    width: 120px;
+}
+#SubjectName{
+    width: 200px;
+}
+#SubjectCode{
+    width: 150px;
+}

@@ -1,0 +1,32 @@
+{% extends 'Login_Base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/Student_Login.css">
+{% endblock %}
+
+{% block content %}
+<h1 class="studentlogin">Student Login</h1>
+<form method="POST">
+  {% csrf_token %}
+  <label class="studentloginformlable" for="StudentID">Student ID:</label>
+  <input class="studentloginforminput" type="number" id="StudentID" name="StudentID" required><br>
+  <label class="studentloginformlable" for="CollageCode">Collage Code:</label>
+  <input class="studentloginforminput" type="number" id="CollageCode" name="CollageCode" required><br>
+  <label class="studentloginformlable" for="Password">Password:</label>
+  <input class="studentloginforminput" type="password" id="Password" name="Password" required><br>
+  <div class="buttoncontainer">
+    <button type="submit">Login</button>
+  </div>
+</form>
+
+<div class="studentloginformmessages">
+  {% if messages %}
+
+  {% for message in messages %}
+  <h3>{{ message }}</h3>
+  {% endfor %}
+
+  {% endif %}
+</div>
+
+{% endblock %}

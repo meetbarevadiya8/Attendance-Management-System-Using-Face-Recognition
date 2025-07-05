@@ -1,0 +1,67 @@
+.maincontinor{
+    width: 500px;
+    height: 500px;
+    border: 3px solid #848482;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.DatabaseAdministratorLogin {
+    border: 2px solid #848482;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    margin-bottom: 30px;
+}
+
+.DatabaseAdministratorLoginlable {
+    font-size: larger;
+    margin-left: 10px;
+    background-color: transparent;
+    pointer-events: none;
+
+}
+
+.DatabaseAdministratorLogininput {
+    border: 2px solid #848482;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 3px;
+    width: -webkit-fill-available;
+    height: 30px;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    background-color: #d3d3d3;
+}
+
+.buttoncontainer {
+    border: 0px solid #848482;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+}
+
+button {
+    width: 200px;
+    height: 40px;
+    font-size: larger;
+    background-color: #d3d3d3;
+    border-radius: 4px;
+    color: #002147;
+    border: 2px solid #848482;
+}
+
+.studentloginformmessages {
+    /*border: 1px solid red;*/
+    width: -webkit-fill-available;
+    height: max-content;
+    font-size: x-large;
+    margin-top: 30px;
+    text-align: center; 
+    color: red;
+}

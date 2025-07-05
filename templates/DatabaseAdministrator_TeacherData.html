@@ -1,0 +1,234 @@
+{% extends 'DatabaseAdministrator_HomeBase.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/DatabaseAdministrator_TeacherData1.css">
+{% endblock %}
+
+{% block title %}Teacher Data{% endblock %}
+{% block content1 %}
+
+<div class="homebutton">
+    <a href="{% url 'DatabaseAdministrator_Home' %}"><i class="fa fa-home"></i></a>
+</div>
+
+<div class="addbutton">
+    <button id="addDataBtn" class="add-button">Add Data</button>
+</div>
+<!-- Add Data Modal -->
+<div id="addDataModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="adddata">
+            <h2>Add Data</h2>
+        </div>
+        <form id="addDataForm" onsubmit="setPlaceholderValue()" method="POST" action="{% url 'TeacherData_AddNew' %}">
+            <div class="TeacherDataForm">
+                {% csrf_token %}
+                <label class="TeacherDataFormlable" for="TeacherID">Teacher ID:</label>
+                <input class="TeacherDataForminput" type="text" id="TeacherID" name="TeacherID" required><br>
+
+                <label class="TeacherDataFormlable" for="Teacher_Name">Name:</label>
+                <input class="TeacherDataForminput" type="text" id="Teacher_Name" name="Teacher_Name" required><br>
+
+                <input class="TeacherDataForminput" type="number" id="CollageCode" name="CollageCode"
+                    placeholder="{{ DatabaseAdministrator.DatabaseAdministrator_CollageCode }}"><br>
+
+                <label class="TeacherDataFormlable" for="Department">Department:</label>
+                <!--<input class="TeacherDataForminput" type="text" id="Department" name="Department" required><br>-->
+                <select class="TeacherDataForminput" id="Department" name="Department" required>
+                    <option value="" selected>Select Department</option>
+                    {% for DepartmentandSemestre in DepartmentandSemestre %}
+                    <option class="selectvalue" value={{ DepartmentandSemestre }}>{{ DepartmentandSemestre }}</option>
+                    {% endfor %}
+                </select>
+
+                <label class="TeacherDataFormlable" for="Email">Email:</label>
+                <input class="TeacherDataForminput" type="email" id="Email" name="Email" required><br>
+
+                <label class="TeacherDataFormlable" for="Mobile">Mobile:</label>
+                <input class="TeacherDataForminput" type="number" id="Mobile" name="Mobile" required><br>
+
+                <label class="TeacherDataFormlable" for="Password">Password:</label>
+                <input class="TeacherDataForminput" type="password" id="Password" name="Password" required><br>
+
+                <button type="submit" class="submit-button">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="tablebody">
+    <table>
+        <thead>
+            <tr>
+                <th>Teacher ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Email</th>
+                <th>Mobile</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for TeacherData in TeacherData1 %}
+            <tr>
+                <td class="columncenter">
+                    <button class="open-modal1" TeacherID="{{ TeacherData.TeacherID }}"
+                        Teacher-Name="{{ TeacherData.Teacher_Name }}" Department="{{ TeacherData.Department }}"
+                        Email="{{TeacherData.Email}}" Mobile="{{TeacherData.Mobile}}">
+                        {{ TeacherData.TeacherID}}
+                    </button>
+                </td>
+                <td>{{ TeacherData.Teacher_Name }}</td>
+                <td>{{ TeacherData.Department }}</td>
+                <td>{{ TeacherData.Email }}</td>
+                <td>{{ TeacherData.Mobile }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No Data available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Edit Modal -->
+<div id="itemModal1" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="adddata">
+            <h2>Edit Data</h2>
+        </div>
+
+        <form id="updateDataForm" method="POST" action="{% url 'TeacherData_Updatedata' %}">
+            <div class="DepartmentandSemestreForm">
+                {% csrf_token %}
+                <label class="DepartmentandSemestreFormlable" for="TeacherID">ID:</label>
+                <input class="DepartmentandSemestreForminput" type="number" id="modalTeacherID" name="TeacherID"
+                    required><br>
+
+                <label class="DepartmentandSemestreFormlable" for="Teacher_Name">Name:</label>
+                <input class="DepartmentandSemestreForminput" type="text" id="modalTeacherName" name="Teacher_Name"
+                    required><br>
+
+                <label class="DepartmentandSemestreFormlable" for="modalDepartment">Department:</label>
+                <select class="DepartmentandSemestreForminput" id="modalDepartment" name="Department" required>
+                        {% for DepartmentandSemestre in DepartmentandSemestre %}
+                    <option class="selectvalue" value={{ DepartmentandSemestre }}>{{ DepartmentandSemestre }}</option>
+                        {% endfor %}
+                </select>
+
+                <label class="DepartmentandSemestreFormlable" for="Email">Email:</label>
+                <input class="DepartmentandSemestreForminput" type="email" id="modalEmail" name="Email" required><br>
+
+                <label class="DepartmentandSemestreFormlable" for="Mobile">Mobile:</label>
+                <input class="DepartmentandSemestreForminput" type="number" id="modalMobile" name="Mobile" required><br>
+                <div class="UpdateandDeletebutton">
+                    <button type="update" class="submit-button">Update</button>
+                    <button onclick="deleteRecord()" type="delete" id="deletebutton"
+                        class="submit-button">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("addDataModal");
+    const addDataBtn = document.getElementById("addDataBtn");
+    const closeBtn = document.querySelector(".close");
+
+    // Open modal
+    addDataBtn.onclick = function () {
+        modal.style.display = "block";
+    };
+
+    // Close modal
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // Close modal if clicked outside of it
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    function setPlaceholderValue() {
+        const input = document.getElementById('CollageCode');
+        if (!input.value.trim()) {
+            input.value = input.placeholder; // Set the value to the placeholder if empty
+        }
+    }
+</script>
+
+<script>
+    // Get modal element
+    const modal1 = document.getElementById('itemModal1');
+
+    // Get all buttons that open the modal
+    const openModalButtons = document.querySelectorAll('.open-modal1');
+
+    // Get the <span> element that closes the modal
+    //const closeBtn1 = document.querySelector('.close');
+    const closeButton = document.querySelector(".close");
+
+    closeButton.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks a button, open the modal and populate it
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const TeacherID = button.getAttribute('TeacherID');
+            const Teacher_Name = button.getAttribute('Teacher-Name');
+            const Department = button.getAttribute('Department');
+            const Email = button.getAttribute('Email');
+            const Mobile = button.getAttribute('Mobile');
+
+            document.getElementById('modalTeacherID').value = TeacherID;
+            document.getElementById('modalTeacherName').value = Teacher_Name;
+            document.getElementById('modalDepartment').value = Department;
+            document.getElementById('modalEmail').value = Email;
+            document.getElementById('modalMobile').value = Mobile;
+
+            modal1.style.display = 'block';
+        });
+    });
+
+    //// When the user clicks on <span> (x), close the modal
+    //span.onclick = function () {
+    //    modal1.style.display = 'none';
+    //}
+
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal1) {
+            modal1.style.display = 'none';
+        }
+    }
+
+    function deleteRecord() {
+        const TeacherID = document.getElementById('modalTeacherID').value;
+
+        fetch(`/TeacherData_Deletedata/${TeacherID}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                location.reload();
+            });
+    }
+
+
+</script>
+
+{% endblock %}

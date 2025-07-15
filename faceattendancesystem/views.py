@@ -27,7 +27,7 @@ def Student_Login(request):
         try:
             student = StudentData.objects.get(StudentID=StudentID)
             if student.CollageCode == CollageCode:  # For production, use hashed passwords
-                if student.Password == Password:  # For production, use hashed passwords
+                if student.Password == Password:  # For production, use hashed passwords 
                     request.session['StudentID'] = StudentID  # Store user ID in session
                     user = authenticate(request, StudentID=StudentID, Password=Password)
                     if user is not None:
